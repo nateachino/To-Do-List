@@ -31,13 +31,8 @@ header {
   height: 100%;
   background-color: yellow;
   transition-property: all;
-  transition: 1000ms ease;
-}
-
-@media (max-width: 600px) {
-  .sidebar {
-    flex: 0 0 100px;
-  }
+  transition: 500ms ease;
+  width: 0;
 }
 
 .content {
@@ -46,5 +41,5 @@ header {
   height: 100%;
   background-color: orange;
   transition-property: grid;
-  transition: all 1000ms ease;
+  transition: all 500ms ease;
 }

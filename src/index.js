@@ -6,10 +6,13 @@ var sidebarVisibility = true;
 
 sidebarButton.addEventListener("click", () => {
   if (sidebarVisibility == true) {
-    sidebar.style.transform = "translateX(-500px)";
+    sidebar.style.flex = "0";
+    sidebarVisibility = false;
+    console.log(sidebarVisibility);
   } else {
+    console.log(sidebarVisibility);
+
     sidebarVisibility = true;
-    sidebar.style.position = "static";
-    sidebar.style.transform = "translateX(0px)";
+    sidebar.style.flex = "0 1 15%";
   }
 });
