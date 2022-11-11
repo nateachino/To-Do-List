@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("const sidebar = document.getElementsByClassName(\"sidebar\")[0];\r\nconst content = document.getElementsByClassName(\"content\")[0];\r\nconst sidebarButton = document.getElementById(\"sidebar-button\");\r\nconst bodyContainer = document.getElementsByClassName(\"body-container\")[0];\r\nvar sidebarVisibility = true;\r\n\r\nsidebarButton.addEventListener(\"click\", () => {\r\n  if (sidebarVisibility == true) {\r\n    sidebar.style.transform = \"translateX(-500px)\";\r\n  } else {\r\n    sidebarVisibility = true;\r\n    sidebar.style.position = \"static\";\r\n    sidebar.style.transform = \"translateX(0px)\";\r\n  }\r\n});\r\n\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
 
 /***/ })
 

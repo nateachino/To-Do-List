@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: red;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.body-container {
+  display: flex;
+  height: calc(100vh - 70px);
+  transition: 1000ms ease;
+}
+
+.title {
+  height: 50px;
+  width: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.sidebar {
+  flex: 0 1 15%;
+  height: 100%;
+  background-color: yellow;
+  transition-property: all;
+  transition: 1000ms ease;
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    flex: 0 0 100px;
+  }
+}
+
+.content {
+  flex-grow: 1;
+
+  height: 100%;
+  background-color: orange;
+  transition-property: grid;
+  transition: all 1000ms ease;
+}
