@@ -7,21 +7,80 @@
     <title>Listify</title>
     <link rel="stylesheet" href="/src/style.css" />
     <script src="./main.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yellowtail&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
+      <div class="test"></div>
       <header>
         <div class="head">
           <div>
-            <button id="sidebar-button">close</button>
+            <button id="sidebar-button"><i class="fa fa-bars"></i></button>
           </div>
           <div class="title">Listify</div>
+          <div><button id="add-task"><i class="fa fa-plus"></i></button></div>
         </div>
       </header>
 
       <div class="body-container">
-        <div class="sidebar">test</div>
-        <div class="content">test</div>
+        <div class="task-create">
+          <div id="create-top">
+            <div class="task-create-header">Create Task</div>
+            <div><button class="exit-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button></div>
+          </div>
+          <div class="task-name-container">
+            <label for="task-name">Task Name</label>
+            <input id="task-name" placeholder="Name"/>
+          </div>
+
+          <div class="task-description-container">
+            <label for="task-desc">Task Description</label>
+            <input id="task-desc" placeholder="Description" />
+          </div>
+
+
+          <div class="task-date-container">
+            <label for="task-date">Task Date</label>
+            <input id="task-date" placeholder="Date" type="date" />
+          </div>
+
+          <div class="priority-container">
+
+            <label for="priority">Task Priority</label>
+            <div>
+              <input name= "priority" id="low" type="radio">
+              <input name= "priority" id="normal" type="radio">
+              <input name= "priority" id="high"type="radio">
+            </div>
+          </div>
+
+
+          <button id="create-task">create task</button>
+        </div>
+        
+        <div class="sidebar">
+        </div>
+
+        <div class="content">
+          <div class="task-container">
+            <div class="task-right">
+              <input type="checkbox">
+              <div class="task-name">Task</div>
+            </div>
+            <div class="task-left">
+              <div>01/02/02</div>
+              <div class="prio-card">HIGH</div>
+              
+              <div><button class="task-details"><i class="fa fa-info-circle" aria-hidden="true"></i></button></div>
+              <div><button class="remove-task"><i class="fa fa-trash" aria-hidden="true"></i></button></div>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
