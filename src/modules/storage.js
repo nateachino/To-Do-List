@@ -1,5 +1,9 @@
 export let taskArray = [];
+export let projectArray = [];
+
 export function addToTask(task) {
   taskArray.push(task);
-  console.log(taskArray);
+}
+export function addToProject(project) {
+  projectArray.push(project);
 }

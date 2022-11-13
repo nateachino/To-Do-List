@@ -11,6 +11,5 @@ export function createTaskObject(taskName, taskDesc, dueDate, prio, project) {
     projectAssign: project,
   };
   num += 1;
-  console.log(task);
   return task;
 }

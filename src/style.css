@@ -63,9 +63,62 @@ header {
   transition-property: all;
   transition: 200ms ease;
   width: 0;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .sidebar > * {
+  transition: all 200ms ease;
+}
+
+.projects {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.4px grey solid;
+}
+
+.projects > div > button {
+  border: none;
+  background-color: var(--task-color);
+  cursor: pointer;
+  font-size: 30px;
+  color: black;
+}
+
+.project {
+  margin-bottom: 5px;
+  transition: all 200ms ease;
+}
+
+.project-create-container {
+  transition: all 200ms ease;
+}
+
+#project-name {
+  border: none;
+  margin-bottom: 10px;
+}
+
+#project-create {
+  border: none;
+  width: 80px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.project:hover {
+  margin-bottom: 5px;
+  text-decoration: underline;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.selected {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .content {

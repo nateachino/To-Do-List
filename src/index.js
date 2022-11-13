@@ -1,11 +1,18 @@
 import { createTaskObject } from "./modules/task";
-import { taskArray, addToTask } from "./modules/storage";
+import {
+  taskArray,
+  addToTask,
+  projectArray,
+  addToProject,
+} from "./modules/storage";
 import {
   createCard,
   deleteCard,
   cardDetails,
   editDetails,
 } from "./modules/Manipulation";
+import { addProject, createProject, clearSelected } from "./modules/projects";
+import { projectSelected } from "./modules/Manipulation";
 
 const taskButton = document.getElementById("add-task");
 const bodyContainer = document.getElementsByClassName("body-container")[0];
@@ -15,11 +22,14 @@ const sidebarButton = document.getElementById("sidebar-button");
 const createTask = document.getElementById("create-task");
 const createContainer = document.getElementsByClassName("task-create")[0];
 const background = document.getElementsByClassName("test")[0];
-const exitButton = document.getElementsByClassName("fa")[2];
+const exitButton = document.getElementsByClassName("fa")[4];
+const projectAdd = document.getElementById("add-project");
+const projectList = document.getElementsByClassName("project-list")[0];
 
-let page = 0;
+let selectedProject;
 let arrayTask = taskArray;
 
+let creating = false;
 var sidebarVisibility = true;
 
 createTask.addEventListener("click", () => {
@@ -31,7 +41,6 @@ createTask.addEventListener("click", () => {
   for (let i = 0; i < prioritySelector.length; i++) {
     if (prioritySelector[i].checked) {
       selectedPrio = prioritySelector[i].value;
-      console.log(selectedPrio);
     }
   }
 
@@ -39,7 +48,8 @@ createTask.addEventListener("click", () => {
     taskName.value,
     taskDesc.value,
     taskDate.value,
-    selectedPrio
+    selectedPrio,
+    selectedProject
   );
   addToTask(taskObj);
 
@@ -94,21 +104,61 @@ exitButton.addEventListener("click", () => {
 
 sidebarButton.addEventListener("click", () => {
   if (sidebarVisibility == true) {
+    let children = sidebar.children;
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.transform = "translateX(-500px)";
+    }
     sidebar.style.flex = "0";
-    sidebar.style.visibility = "hidden";
+    sidebar.style.padding = "0";
     sidebarVisibility = false;
-
-    sidebar.childNodes.forEach((ele) => {
-      if (ele) {
-        console.log(ele);
-      }
-    });
-
-    sidebar.childNodes.forEach((element) => {});
   } else {
     sidebarVisibility = true;
     sidebar.style.flex = "0 0 15%";
+    sidebar.style.padding = "1rem";
     sidebar.style.visibility = "visible";
+    let children = sidebar.children;
+    for (let i = 0; i < children.length; i++) {
+      children[i].style.transform = "translateX(0px)";
+    }
     sidebar.childNodes.forEach((element) => {});
+  }
+});
+
+projectAdd.addEventListener("click", () => {
+  if (creating == false) {
+    creating = true;
+    let proj = addProject();
+    let createButton = proj.querySelector("#project-create");
+
+    createButton.addEventListener("click", () => {
+      let nameInput = proj.querySelector("#project-name");
+      if (nameInput == "") {
+        creating = false;
+      } else {
+        console.log(nameInput.value);
+        let project = createProject(nameInput.value);
+        projectList.removeChild(proj);
+
+        selectedProject = nameInput.value;
+
+        projectSelected(nameInput.value);
+        clearSelected();
+
+        project.classList.add("selected");
+        creating = false;
+
+        const projectSide = document.getElementsByClassName("project");
+
+        Array.from(projectSide).forEach((element) => {
+          element.addEventListener("click", () => {
+            clearSelected();
+            projectSelected(element.innerHTML);
+            element.classList.add("selected");
+            selectedProject = element;
+          });
+        });
+      }
+    });
+  } else {
   }
 });

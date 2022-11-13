@@ -70,7 +70,6 @@ function deleteCard(container, number) {
   for (let i = 0; i < taskArray.length; i++) {
     if (taskArray[i].num == number) {
       taskArray.splice(i, 1);
-      console.log(taskArray);
     }
   }
 }
@@ -118,4 +117,20 @@ function editDetails(task) {
   detailsDate.parentNode.replaceChild(editDate, detailsDate);
 }
 
-export { createCard, deleteCard, cardDetails, editDetails };
+function projectSelected(projectName) {
+  const content = document.getElementsByClassName("content")[0];
+  console.log("project name: " + projectName);
+
+  while (content.firstChild) {
+    if (content.removeChild(content.firstChild)) {
+    }
+  }
+
+  for (let i = 0; i < taskArray.length; i++) {
+    if (taskArray[i].projectAssign == projectName) {
+      createCard(taskArray[i]);
+    }
+  }
+}
+
+export { createCard, deleteCard, cardDetails, editDetails, projectSelected };
