@@ -116,6 +116,19 @@ header {
   gap: 1rem;
 }
 
+#task-desc {
+  height: 300px;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+#task-desc:focus {
+  transition: all 100ms;
+  background-color: var(--honeydew);
+  outline-width: 0;
+  border: 0;
+}
+
 .task-create {
   visibility: hidden;
   position: absolute;
@@ -141,6 +154,20 @@ header {
 .task-create > div > input {
   height: 30px;
   border: 0;
+}
+
+#create-task {
+  border: none;
+  width: 80px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+#create-task:hover {
+  cursor: pointer;
+  background-color: var(--battleship-grey);
 }
 
 .task-create-header {
@@ -195,12 +222,93 @@ input:focus {
   font-size: large;
   font-weight: bolder;
   border-radius: 5px;
-  background-color: red;
   color: white;
   display: grid;
   place-items: center;
   cursor: default;
+  padding: 5px;
 }
 
-button {
+.normal {
+  background-color: orange;
+}
+
+.high {
+  background-color: red;
+}
+
+.low {
+  background-color: green;
+}
+
+input[type="radio"] {
+  /* appearance: none; */
+}
+
+.task-details-container {
+  visibility: hidden;
+  position: absolute;
+  width: 600px;
+  height: fit-content;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--task-color);
+  z-index: 2;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.details-top {
+  border-bottom: 0.2px solid grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.details-buttons > div > button {
+  border: none;
+  background-color: var(--task-color);
+  cursor: pointer;
+  font-size: 30px;
+  color: black;
+}
+
+.details-buttons {
+  display: flex;
+}
+
+.desc-container {
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.desc-label {
+  border-bottom: 0.2px solid grey;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.date-container {
+  margin-bottom: 1rem;
+  padding-left: 10px;
+}
+
+.date-label {
+  font-weight: 600;
+  border-bottom: 0.2px solid grey;
+  margin-bottom: 10px;
+}
+
+.details-prio {
+  padding-left: 10px;
+}
+
+.prio-label {
+  border-bottom: 0.2px solid grey;
+  margin-bottom: 10px;
 }
