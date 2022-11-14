@@ -118,17 +118,19 @@ function editDetails(task) {
 }
 
 function projectSelected(projectName) {
+  console.log(projectName + " selected");
   const content = document.getElementsByClassName("content")[0];
-  console.log("project name: " + projectName);
 
   while (content.firstChild) {
     if (content.removeChild(content.firstChild)) {
     }
   }
 
+  let newArray = [];
   for (let i = 0; i < taskArray.length; i++) {
     if (taskArray[i].projectAssign == projectName) {
-      createCard(taskArray[i]);
+      newArray.push(taskArray[i]);
+      console.log(newArray);
     }
   }
 }

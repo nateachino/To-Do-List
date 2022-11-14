@@ -68,6 +68,10 @@ createTask.addEventListener("click", () => {
   });
 
   let details = taskCard.querySelectorAll(".task-details")[0];
+
+  if (details) {
+    console.log("found details");
+  }
   const detailsContainer = document.getElementsByClassName(
     "task-details-container"
   )[0];

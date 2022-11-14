@@ -109,7 +109,8 @@ header {
   font-weight: bold;
 }
 
-.project:hover {
+.project:hover,
+.home:hover {
   margin-bottom: 5px;
   text-decoration: underline;
   transform: translateY(-2px);
