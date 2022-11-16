@@ -2,9 +2,13 @@
   --battleship-grey: #858786ff;
   --jet: #2d2e2eff;
   --smoky-black: #0f0f0fff;
-  --honeydew: #dff8ebff;
+  --honeydew: #d9f0fc;
   --cg-blue: #227c9dff;
-  --task-color: #9be9c0;
+  --task-color: #b5e2fa;
+}
+
+textarea {
+  resize: none;
 }
 
 body {
@@ -93,6 +97,9 @@ header {
 
 .project-create-container {
   transition: all 200ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 #project-name {
@@ -100,7 +107,8 @@ header {
   margin-bottom: 10px;
 }
 
-#project-create {
+#project-create,
+#project-cancel {
   border: none;
   width: 80px;
   height: 30px;
@@ -109,12 +117,27 @@ header {
   font-weight: bold;
 }
 
-.project:hover,
-.home:hover {
+#project-cancel {
+  background-color: #8b0000;
+}
+
+.project-button-div {
+  display: flex;
+  gap: 5px;
+}
+
+#project-create .project:hover,
+#home:hover {
   margin-bottom: 5px;
   text-decoration: underline;
   transform: translateY(-2px);
   cursor: pointer;
+}
+
+#project-create:hover,
+#project-cancel:hover {
+  cursor: pointer;
+  background-color: var(--battleship-grey);
 }
 
 .selected {
@@ -365,4 +388,74 @@ input[type="radio"] {
 .prio-label {
   border-bottom: 0.2px solid grey;
   margin-bottom: 10px;
+}
+
+.task-edit {
+  visibility: hidden;
+  position: absolute;
+  width: 600px;
+  height: fit-content;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--task-color);
+  z-index: 2;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.task-edit > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.task-edit > div > input {
+  height: 30px;
+  border: 0;
+}
+
+#edit-task {
+  border: none;
+  width: 80px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+#edit-task:hover {
+  cursor: pointer;
+  background-color: var(--battleship-grey);
+}
+
+.edit-create-header {
+  font-weight: 500;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+#edit-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.2px gray solid;
+  padding-bottom: 10px;
+}
+
+.edit-exit-button {
+  border: none;
+  background-color: var(--task-color);
+  cursor: pointer;
+  font-size: 30px;
+  color: black;
+}
+
+#edit-desc {
+  height: 300px;
+  border: none;
+  font-family: "Open Sans", sans-serif;
 }

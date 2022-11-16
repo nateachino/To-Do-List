@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="/src/style.css" />
     <script src="./main.js" defer></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yellowtail&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yellowtail&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -22,97 +28,169 @@
             <button id="sidebar-button"><i class="fa fa-bars"></i></button>
           </div>
           <div class="title">Listify</div>
-          <div><button id="add-task"><i class="fa fa-plus"></i></button></div>
+          <div>
+            <button id="add-task"><i class="fa fa-plus"></i></button>
+          </div>
         </div>
       </header>
 
       <div class="body-container">
-        <div class="task-details-container">
-          <div class="details-top">
-            <div class="details-header">Test Task</div>
-            <div class="details-buttons">
-              <div><button id="edit-button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></div>
-              <div><button class="detail-exit-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button></div>
+        <div class="task-edit">
+          <div id="edit-top">
+            <div class="edit-create-header">Edit Task</div>
+            <div>
+              <button class="edit-exit-button">
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
-
-          <div class="desc-container">
-            <div class="desc-label">Task Details</div>
-            <div class="details-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis magni qui quia. Ratione esse nam unde facilis aperiam mollitia, veniam quos laboriosam, dolorem error exercitationem ea nemo aliquam voluptatum suscipit?</div>
+          <div class="edit-name-container">
+            <label for="edit-name">Edit Name</label>
+            <input id="edit-name" placeholder="Name" />
           </div>
 
-          <div class="date-container">
-            <div class="date-label">Due Date</div>
-            <div class="details-date">2000-20-20</div>
+          <div class="edit-description-container">
+            <label for="edit-desc">Edit Description</label>
+            <textarea id="edit-desc" placeholder="Description"></textarea>
           </div>
 
-          <div class="details-prio">
-            <div class="prio-label">Priorty</div>
-            <div class="prio-card"></div>
-          </div>
-
-          <div><button id="edit-task">EDIT</button></div>
-
-        </div>
-        <div class="task-create">
-          <div id="create-top">
-            <div class="task-create-header">Create Task</div>
-            <div><button class="exit-button"><i class="fa fa-times-circle" aria-hidden="true"></i></button></div>
-          </div>
-          <div class="task-name-container">
-            <label for="task-name">Task Name</label>
-            <input id="task-name" placeholder="Name"/>
-          </div>
-
-          <div class="task-description-container">
-            <label for="task-desc">Task Description</label>
-            <textarea id="task-desc" placeholder="Description"></textarea>
-          </div>
-
-
-          <div class="task-date-container">
-            <label for="task-date">Task Date</label>
-            <input id="task-date" placeholder="Date" type="date" />
+          <div class="edit-date-container">
+            <label for="edit-date">Edit Date</label>
+            <input id="edit-date" placeholder="Date" type="date" />
           </div>
 
           <div class="priority-container">
-
-            <label for="priority">Task Priority</label>
+            <label for="priority">Edit Priority</label>
             <div class="prio-buttons">
-
               <div class="low-prio">
-                <label id="low-label"for="low">LOW</label>
-                <input name= "priority" id="low" type="radio" value="low" >
+                <label id="low-label" for="low">LOW</label>
+                <input name="priority" id="low" type="radio" value="low" />
               </div>
 
               <div class="normal-prio">
                 <label id="normal-label" for="normal">NORMAL</label>
-                <input name= "priority" id="normal" type="radio" value="normal" checked>
+                <input
+                  name="priority"
+                  id="normal"
+                  type="radio"
+                  value="normal"
+                  checked
+                />
+              </div>
               </div>
 
               <div class="high-prio">
-                <label id ="high-label" for="high">HIGH</label>
-                <input name= "priority" id="high"type="radio"value="high">
+                <label id="high-label" for="high">HIGH</label>
+                <input name="priority" id="high" type="radio" value="high" />
               </div>
             </div>
+            <div><button id="edit-task">EDIT</button></div>
           </div>
 
+          <div class="task-details-container">
+            <div class="details-top">
+              <div class="details-header">Test Task</div>
+              <div class="details-buttons">
+                <div>
+                  <button id="edit-button">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div>
+                  <button id="detail-exit-button">
+                    <i class="fa fa-times-circle" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
 
-          <button id="create-task">CREATE</button>
-        </div>
-        
-        <div class="sidebar">
-          <div class="home selected">Home</div>
-          <div class="projects">
-            <div class="projects-header">Projects</div>
-            <div><button id="add-project"><i class="fa fa-plus"></i></button></div>
-          </div>
-          <div class="project-list">
-          </div>
-        </div>
+            <div class="desc-container">
+              <div class="desc-label">Task Details</div>
+              <div class="details-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis magni qui quia. Ratione esse nam unde facilis aperiam
+                mollitia, veniam quos laboriosam, dolorem error exercitationem
+                ea nemo aliquam voluptatum suscipit?
+              </div>
+            </div>
 
-        <div class="content">
+            <div class="date-container">
+              <div class="date-label">Due Date</div>
+              <div class="details-date">2000-20-20</div>
+            </div>
+
+            <div class="details-prio">
+              <div class="prio-label">Priorty</div>
+              <div class="prio-card"></div>
+            </div>
+
           </div>
+
+          <div class="task-create">
+            <div id="create-top">
+              <div class="task-create-header">Create Task</div>
+              <div>
+                <button class="exit-button">
+                  <i class="fa fa-times-circle" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <div class="task-name-container">
+              <label for="task-name">Task Name</label>
+              <input id="task-name" placeholder="Name" />
+            </div>
+
+            <div class="task-description-container">
+              <label for="task-desc">Task Description</label>
+              <textarea id="task-desc" placeholder="Description"></textarea>
+            </div>
+
+            <div class="task-date-container">
+              <label for="task-date">Task Date</label>
+              <input id="task-date" placeholder="Date" type="date" />
+            </div>
+
+            <div class="priority-container">
+              <label for="priority">Task Priority</label>
+              <div class="prio-buttons">
+                <div class="low-prio">
+                  <label id="low-label" for="low">LOW</label>
+                  <input name="edit-priority" id="low" type="radio" value="low" />
+                </div>
+
+                <div class="normal-prio">
+                  <label id="normal-label" for="normal">NORMAL</label>
+                  <input
+                    name="edit-priority"
+                    id="normal"
+                    type="radio"
+                    value="normal"
+                    checked
+                  />
+                </div>
+
+                <div class="high-prio">
+                  <label id="high-label" for="high">HIGH</label>
+                  <input name="edit-priority" id="high" type="radio" value="high" />
+                </div>
+              </div>
+            </div>
+
+            <button id="create-task">CREATE</button>
+          </div>
+
+          <div class="sidebar">
+            <div id="home" class="selected">Home</div>
+            <div class="projects">
+              <div class="projects-header">Projects</div>
+              <div>
+                <button id="add-project"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+            <div class="project-list"></div>
+          </div>
+
+          <div class="content"></div>
         </div>
       </div>
     </div>

@@ -10,6 +10,9 @@ import {
   deleteCard,
   cardDetails,
   editDetails,
+  homePage,
+  updateDetails,
+  updateCard,
 } from "./modules/Manipulation";
 import { addProject, createProject, clearSelected } from "./modules/projects";
 import { projectSelected } from "./modules/Manipulation";
@@ -25,12 +28,61 @@ const background = document.getElementsByClassName("test")[0];
 const exitButton = document.getElementsByClassName("fa")[4];
 const projectAdd = document.getElementById("add-project");
 const projectList = document.getElementsByClassName("project-list")[0];
+const homeButton = document.getElementById("home");
+const taskEdit = document.getElementsByClassName("task-edit")[0];
 
-let selectedProject;
+let selectedProject = home;
 let arrayTask = taskArray;
 
 let creating = false;
 var sidebarVisibility = true;
+
+export function removeAndDetails(card, obj) {
+  let remove = card.querySelector("#remove-task");
+
+  remove.addEventListener("click", () => {
+    deleteCard(card, obj.num);
+  });
+
+  let details = card.querySelector("#task-details");
+
+  const detailsContainer = document.getElementsByClassName(
+    "task-details-container"
+  )[0];
+
+  details.addEventListener("click", () => {
+    console.log(123);
+    cardDetails(obj);
+    detailsContainer.style.visibility = "visible";
+    background.style.visibility = "visible";
+  });
+
+  let detailsEdit = document.getElementById("edit-button");
+
+  detailsEdit.addEventListener("click", () => {
+    console.log(121231233);
+    editDetails();
+    taskEdit.style.visibility = "visible";
+    detailsContainer.style.visibility = "hidden";
+  });
+
+  const editConfirm = document.getElementById("edit-task");
+
+  editConfirm.addEventListener("click", () => {
+    let newTask = updateDetails(obj.num);
+    updateCard(card, obj);
+
+    taskEdit.style.visibility = "hidden";
+    background.style.visibility = "hidden";
+  });
+
+  let detailsRemove = document.getElementById("detail-exit-button");
+
+  detailsRemove.addEventListener("click", () => {
+    detailsContainer.style.visibility = "hidden";
+    background.style.visibility = "hidden";
+  });
+}
 
 createTask.addEventListener("click", () => {
   const taskName = document.getElementById("task-name");
@@ -56,44 +108,13 @@ createTask.addEventListener("click", () => {
   taskName.value = "";
   taskDesc.value = "";
   taskDate.value = "";
+
   let taskCard = createCard(taskObj);
 
   createContainer.style.visibility = "hidden";
   background.style.visibility = "hidden";
 
-  let remove = taskCard.querySelectorAll(".remove-task")[0];
-
-  remove.addEventListener("click", () => {
-    remove.addEventListener("click", deleteCard(taskCard, taskObj.num));
-  });
-
-  let details = taskCard.querySelectorAll(".task-details")[0];
-
-  if (details) {
-    console.log("found details");
-  }
-  const detailsContainer = document.getElementsByClassName(
-    "task-details-container"
-  )[0];
-
-  details.addEventListener("click", () => {
-    cardDetails(taskObj);
-    detailsContainer.style.visibility = "visible";
-    background.style.visibility = "visible";
-  });
-
-  let detailsEdit = document.getElementById("edit-button");
-
-  detailsEdit.addEventListener("click", () => {
-    editDetails(taskObj);
-  });
-
-  let detailsExit = document.getElementsByClassName("detail-exit-button")[0];
-
-  detailsExit.addEventListener("click", () => {
-    detailsContainer.style.visibility = "hidden";
-    background.style.visibility = "hidden";
-  });
+  removeAndDetails(taskCard, taskObj);
 });
 
 taskButton.addEventListener("click", () => {
@@ -128,11 +149,29 @@ sidebarButton.addEventListener("click", () => {
   }
 });
 
+homeButton.addEventListener("click", () => {
+  if (selectedProject != home) {
+    clearSelected();
+    home.classList.add("selected");
+    homePage();
+  }
+});
+
 projectAdd.addEventListener("click", () => {
   if (creating == false) {
     creating = true;
     let proj = addProject();
     let createButton = proj.querySelector("#project-create");
+    let cancelButton = proj.querySelector("#project-cancel");
+
+    cancelButton.addEventListener("click", () => {
+      const parent = cancelButton.parentElement.parentElement;
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+      parent.remove();
+      creating = false;
+    });
 
     createButton.addEventListener("click", () => {
       let nameInput = proj.querySelector("#project-name");

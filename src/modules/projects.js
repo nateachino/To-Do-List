@@ -7,18 +7,23 @@ export function addProject() {
 
   const projectNameLabel = document.createElement("div");
   const projectNameInput = document.createElement("input");
+  const buttonDiv = document.createElement("div");
   const projectCreate = document.createElement("button");
+  const projectCancel = document.createElement("button");
 
   projectNameLabel.innerHTML = "Project Name";
   projectNameInput.setAttribute("id", "project-name");
   projectCreate.setAttribute("id", "project-create");
+
+  projectCancel.setAttribute("id", "project-cancel");
+
+  projectCancel.innerHTML = "CANCEL";
   projectCreate.innerHTML = "CREATE";
 
-  projectCreateContainter.append(
-    projectNameLabel,
-    projectNameInput,
-    projectCreate
-  );
+  buttonDiv.classList.add("project-button-div");
+  buttonDiv.append(projectCreate, projectCancel);
+
+  projectCreateContainter.append(projectNameLabel, projectNameInput, buttonDiv);
 
   projectCreateContainter.classList.add("project-create-container");
   return projectCreateContainter;

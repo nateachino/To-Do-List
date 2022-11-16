@@ -1,3 +1,4 @@
+import { removeAndDetails } from "..";
 import { taskArray } from "./storage";
 
 function createCard(task) {
@@ -36,7 +37,7 @@ function createCard(task) {
 
   taskDetails.appendChild(cssIconOne);
   firstButtonDiv.appendChild(taskDetails);
-  taskDetails.classList.add("task-details");
+  taskDetails.setAttribute("id", "task-details");
 
   const removeTask = document.createElement("button");
   const cssIconTwo = document.createElement("i");
@@ -46,7 +47,7 @@ function createCard(task) {
 
   removeTask.appendChild(cssIconTwo);
   secondButtonDiv.appendChild(removeTask);
-  removeTask.classList.add("remove-task");
+  removeTask.setAttribute("id", "remove-task");
 
   name.innerHTML = task.name;
   date.innerHTML = task.date;
@@ -95,26 +96,80 @@ function editDetails(task) {
   const detailsName = document.getElementsByClassName("details-header")[0];
   const detailsDesc = document.getElementsByClassName("details-desc")[0];
   const detailsDate = document.getElementsByClassName("details-date")[0];
+  const detailsPrio = document.getElementsByClassName("prio-card")[0];
 
-  const editName = document.createElement("input");
-  editName.setAttribute("id", "task-name");
-
-  const editDesc = document.createElement("textarea");
-  editDesc.setAttribute("id", "task-desc");
-
-  const editDate = document.createElement("input");
-  editDate.type = "date";
-  editDate.setAttribute("id", "task-date");
-
-  const submit = document.getElementById("edit-task");
+  const editName = document.getElementById("edit-name");
+  const editDesc = document.getElementById("edit-desc");
+  const editDate = document.getElementById("edit-date");
+  const editPrio = document.getElementsByName("edit-priority");
 
   editName.value = detailsName.innerHTML;
   editDesc.value = detailsDesc.innerHTML;
   editDate.value = detailsDate.innerHTML;
 
-  detailsName.parentNode.replaceChild(editName, detailsName);
-  detailsDesc.parentNode.replaceChild(editDesc, detailsDesc);
-  detailsDate.parentNode.replaceChild(editDate, detailsDate);
+  for (let i = 0; i < editPrio.length; i++) {
+    if (editPrio[i].id == detailsPrio.innerHTML.toLowerCase()) {
+      console.log("124312412412525125" + editPrio[i].value);
+      editPrio[i].checked;
+    }
+  }
+}
+
+function updateDetails(num) {
+  const editName = document.getElementById("edit-name");
+  const editDesc = document.getElementById("edit-desc");
+  const editDate = document.getElementById("edit-date");
+  const editPrio = document.getElementsByName("edit-priority");
+  let current = "";
+
+  let selectedPrio = "";
+
+  for (let i = 0; i < editPrio.length; i++) {
+    if (editPrio[i].checked) {
+      console.log("1231232131" + editPrio[i].value);
+      selectedPrio = editPrio[i].value;
+    }
+  }
+
+  const detailsName = document.getElementsByClassName("details-header")[0];
+  const detailsDesc = document.getElementsByClassName("details-desc")[0];
+  const detailsDate = document.getElementsByClassName("details-date")[0];
+  const detailsPrio = document.getElementsByClassName("prio-card");
+
+  detailsName.innerHTML = editName.value;
+  detailsDate.innerHTML = editDate.value;
+  detailsDesc.innerHTML = editDesc.value;
+
+  for (let i = 0; i < taskArray.length; i++) {
+    if (taskArray[i].num == num) {
+      current = taskArray[i];
+      current.name = editName.value;
+      current.description = editDesc.value;
+      current.date = editDate.value;
+      current.priority = selectedPrio;
+    }
+  }
+  return current;
+}
+
+function updateCard(card, obj) {
+  const cardName = card.querySelector(".task-name");
+  const cardDate = card.querySelector(".task-date");
+  const cardPrio = card.querySelector(".prio-card");
+
+  const name = obj.name;
+  const date = obj.date;
+  const prio = obj.priority;
+
+  console.log(prio);
+
+  cardName.innerHTML = name;
+  cardDate.innerHTML = date;
+  cardPrio.innerHTML = prio.toUpperCase();
+  cardPrio.className = "";
+  cardPrio.innerHTML = prio;
+  cardPrio.classList.add = "prio-card";
+  cardPrio.classList.add = prio;
 }
 
 function projectSelected(projectName) {
@@ -130,9 +185,35 @@ function projectSelected(projectName) {
   for (let i = 0; i < taskArray.length; i++) {
     if (taskArray[i].projectAssign == projectName) {
       newArray.push(taskArray[i]);
-      console.log(newArray);
+      for (let j = 0; j < newArray.length; j++) {
+        let card = createCard(newArray[j]);
+        removeAndDetails(card, newArray[j]);
+      }
     }
   }
 }
 
-export { createCard, deleteCard, cardDetails, editDetails, projectSelected };
+function homePage() {
+  const content = document.getElementsByClassName("content")[0];
+
+  while (content.firstChild) {
+    if (content.removeChild(content.firstChild)) {
+    }
+  }
+
+  for (let i = 0; i < taskArray.length; i++) {
+    let card = createCard(taskArray[i]);
+    removeAndDetails(card, taskArray[i]);
+  }
+}
+
+export {
+  createCard,
+  deleteCard,
+  cardDetails,
+  editDetails,
+  projectSelected,
+  homePage,
+  updateDetails,
+  updateCard,
+};
