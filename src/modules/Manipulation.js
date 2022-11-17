@@ -5,6 +5,7 @@ function createCard(task) {
   const content = document.getElementsByClassName("content")[0];
   const container = document.createElement("div");
   container.classList.add("task-container");
+  container.dataset.index = task.num;
 
   const taskRight = document.createElement("div");
   taskRight.classList.add("task-right");
@@ -106,13 +107,6 @@ function editDetails(task) {
   editName.value = detailsName.innerHTML;
   editDesc.value = detailsDesc.innerHTML;
   editDate.value = detailsDate.innerHTML;
-
-  for (let i = 0; i < editPrio.length; i++) {
-    if (editPrio[i].id == detailsPrio.innerHTML.toLowerCase()) {
-      console.log("124312412412525125" + editPrio[i].value);
-      editPrio[i].checked;
-    }
-  }
 }
 
 function updateDetails(num) {
@@ -121,13 +115,16 @@ function updateDetails(num) {
   const editDate = document.getElementById("edit-date");
   const editPrio = document.getElementsByName("edit-priority");
   let current = "";
+  const number = num;
+
+  console.log(num);
 
   let selectedPrio = "";
 
   for (let i = 0; i < editPrio.length; i++) {
     if (editPrio[i].checked) {
-      console.log("1231232131" + editPrio[i].value);
       selectedPrio = editPrio[i].value;
+      editPrio[i].checked;
     }
   }
 
@@ -140,36 +137,30 @@ function updateDetails(num) {
   detailsDate.innerHTML = editDate.value;
   detailsDesc.innerHTML = editDesc.value;
 
-  for (let i = 0; i < taskArray.length; i++) {
-    if (taskArray[i].num == num) {
-      current = taskArray[i];
-      current.name = editName.value;
-      current.description = editDesc.value;
-      current.date = editDate.value;
-      current.priority = selectedPrio;
-    }
-  }
-  return current;
+  return selectedPrio;
 }
 
-function updateCard(card, obj) {
-  const cardName = card.querySelector(".task-name");
-  const cardDate = card.querySelector(".task-date");
-  const cardPrio = card.querySelector(".prio-card");
+function updateCard(num) {
+  console.log(document.querySelector("[data-index=" + num + "]"));
 
-  const name = obj.name;
-  const date = obj.date;
-  const prio = obj.priority;
+  // const getCardName = card.getElementsByClassName;
+  // const getCardDate = card.querySelector(".task-date");
+  // const getCardPrio = card.querySelector(".prio-card");
 
-  console.log(prio);
+  // const editName = document.getElementById("edit-name");
+  // const editDesc = document.getElementById("edit-desc");
+  // const editDate = document.getElementById("edit-date");
+  // const editPrio = document.getElementsByName("edit-priority");
 
-  cardName.innerHTML = name;
-  cardDate.innerHTML = date;
-  cardPrio.innerHTML = prio.toUpperCase();
-  cardPrio.className = "";
-  cardPrio.innerHTML = prio;
-  cardPrio.classList.add = "prio-card";
-  cardPrio.classList.add = prio;
+  // const objName = editName.value;
+  // const objDate = editDate.value;
+  // const objPrio = obj;
+
+  // console.log(obj);
+  // getCardName.innerHTML = objName;
+  // getCardDate.innerHTML = objDate;
+  // getCardPrio.className = "prio-card" + " " + objPrio;
+  // getCardPrio.innerHTML = objPrio.toUpperCase();
 }
 
 function projectSelected(projectName) {

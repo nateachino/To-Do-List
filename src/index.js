@@ -25,17 +25,22 @@ const sidebarButton = document.getElementById("sidebar-button");
 const createTask = document.getElementById("create-task");
 const createContainer = document.getElementsByClassName("task-create")[0];
 const background = document.getElementsByClassName("test")[0];
-const exitButton = document.getElementsByClassName("fa")[4];
+const exitButton = document.getElementsByClassName("fa")[5];
 const projectAdd = document.getElementById("add-project");
 const projectList = document.getElementsByClassName("project-list")[0];
 const homeButton = document.getElementById("home");
 const taskEdit = document.getElementsByClassName("task-edit")[0];
+const detailsName = document.getElementsByClassName("details-header")[0];
+const detailsDesc = document.getElementsByClassName("details-desc")[0];
+const detailsDate = document.getElementsByClassName("details-date")[0];
+const detailsPrio = document.getElementsByClassName("prio-card")[0];
 
 let selectedProject = home;
 let arrayTask = taskArray;
 
 let creating = false;
 var sidebarVisibility = true;
+let creatingTask = false;
 
 export function removeAndDetails(card, obj) {
   let remove = card.querySelector("#remove-task");
@@ -51,29 +56,17 @@ export function removeAndDetails(card, obj) {
   )[0];
 
   details.addEventListener("click", () => {
-    console.log(123);
     cardDetails(obj);
+
     detailsContainer.style.visibility = "visible";
     background.style.visibility = "visible";
   });
 
   let detailsEdit = document.getElementById("edit-button");
-
   detailsEdit.addEventListener("click", () => {
-    console.log(121231233);
-    editDetails();
+    editDetails(obj);
     taskEdit.style.visibility = "visible";
     detailsContainer.style.visibility = "hidden";
-  });
-
-  const editConfirm = document.getElementById("edit-task");
-
-  editConfirm.addEventListener("click", () => {
-    let newTask = updateDetails(obj.num);
-    updateCard(card, obj);
-
-    taskEdit.style.visibility = "hidden";
-    background.style.visibility = "hidden";
   });
 
   let detailsRemove = document.getElementById("detail-exit-button");
@@ -82,39 +75,108 @@ export function removeAndDetails(card, obj) {
     detailsContainer.style.visibility = "hidden";
     background.style.visibility = "hidden";
   });
+
+  let editExit = document.getElementsByClassName("edit-exit-button")[0];
+  editExit.addEventListener("click", () => {
+    taskEdit.style.visibility = "hidden";
+    background.style.visibility = "hidden";
+  });
+
+  detailsName.addEventListener("click", () => {
+    const nameInput = document.createElement("input");
+    nameInput.value = detailsName.innerHTML;
+    const parent = detailsName.parentElement;
+    parent.replaceChild(nameInput, detailsName);
+
+    nameInput.addEventListener("keypress", (e) => {
+      if (e.which == 13) {
+        detailsName.innerHTML = nameInput.value;
+        parent.replaceChild(detailsName, nameInput);
+        card;
+      }
+    });
+  });
+
+  detailsDate.addEventListener("click", () => {
+    console.log("test");
+    const dateInput = document.createElement("input");
+    dateInput.type = "date";
+    const parent = detailsDate.parentElement;
+    parent.replaceChild(dateInput, detailsDate);
+
+    dateInput.addEventListener("keypress", (e) => {
+      if (e.which == 13) {
+        detailsDate.innerHTML = dateInput.value;
+        parent.replaceChild(detailsDate, dateInput);
+      }
+    });
+  });
 }
 
 createTask.addEventListener("click", () => {
+  let match = false;
+
   const taskName = document.getElementById("task-name");
-  const taskDesc = document.getElementById("task-desc");
-  const taskDate = document.getElementById("task-date");
-  const prioritySelector = document.getElementsByName("priority");
-  let selectedPrio = "";
-  for (let i = 0; i < prioritySelector.length; i++) {
-    if (prioritySelector[i].checked) {
-      selectedPrio = prioritySelector[i].value;
+  let remText = taskName.value.replace(/\s/g, "");
+
+  for (let p = 0; p < taskArray.length; p++) {
+    if (taskArray[p].name == remText) {
+      taskName.focus;
+      match = true;
     }
   }
 
-  let taskObj = createTaskObject(
-    taskName.value,
-    taskDesc.value,
-    taskDate.value,
-    selectedPrio,
-    selectedProject
-  );
-  addToTask(taskObj);
+  if (remText.length == 0 || match == true) {
+    taskName.focus;
+    alert("Invalid task name");
+  } else {
+    const taskDesc = document.getElementById("task-desc");
+    const taskDate = document.getElementById("task-date");
 
-  taskName.value = "";
-  taskDesc.value = "";
-  taskDate.value = "";
+    if (taskDate.value == undefined || taskDate.value == "") {
+      taskDate.type = "input";
+      taskDate.value = "No Date";
+      console.log(taskDate.value);
+    }
 
-  let taskCard = createCard(taskObj);
+    console.log(taskDate.value);
+    const prioritySelector = document.getElementsByName("priority");
+    let selectedPrio = "";
+    for (let i = 0; i < prioritySelector.length; i++) {
+      if (prioritySelector[i].checked) {
+        selectedPrio = prioritySelector[i].value;
+      }
+    }
 
-  createContainer.style.visibility = "hidden";
-  background.style.visibility = "hidden";
+    let taskObj = createTaskObject(
+      taskName.value,
+      taskDesc.value,
+      taskDate.value,
+      selectedPrio,
+      selectedProject
+    );
+    addToTask(taskObj);
 
-  removeAndDetails(taskCard, taskObj);
+    taskName.value = "";
+    taskDesc.value = "";
+    taskDate.value = "";
+
+    let taskCard = createCard(taskObj);
+
+    createContainer.style.visibility = "hidden";
+    background.style.visibility = "hidden";
+
+    removeAndDetails(taskCard, taskObj);
+
+    let confirmCreate = document.getElementById("edit-task");
+
+    confirmCreate.addEventListener("click", () => {
+      taskEdit.style.visibility = "hidden";
+      background.style.visibility = "hidden";
+      let newDetails = updateDetails(taskObj.num);
+      updateCard(taskCard, newDetails, taskObj.num);
+    });
+  }
 });
 
 taskButton.addEventListener("click", () => {
@@ -138,7 +200,7 @@ sidebarButton.addEventListener("click", () => {
     sidebarVisibility = false;
   } else {
     sidebarVisibility = true;
-    sidebar.style.flex = "0 0 15%";
+    sidebar.style.flex = "0 0 clamp(150px, 15%, 350px)";
     sidebar.style.padding = "1rem";
     sidebar.style.visibility = "visible";
     let children = sidebar.children;

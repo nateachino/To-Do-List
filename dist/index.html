@@ -45,46 +45,46 @@
             </div>
           </div>
           <div class="edit-name-container">
-            <label for="edit-name">Edit Name</label>
+            <label>Edit Name</label>
             <input id="edit-name" placeholder="Name" />
           </div>
 
           <div class="edit-description-container">
-            <label for="edit-desc">Edit Description</label>
+            <label>Edit Description</label>
             <textarea id="edit-desc" placeholder="Description"></textarea>
           </div>
 
           <div class="edit-date-container">
-            <label for="edit-date">Edit Date</label>
+            <label>Edit Date</label>
             <input id="edit-date" placeholder="Date" type="date" />
           </div>
 
           <div class="priority-container">
-            <label for="priority">Edit Priority</label>
+            <label for="edit-priority">Edit Priority</label>
             <div class="prio-buttons">
               <div class="low-prio">
                 <label id="low-label" for="low">LOW</label>
-                <input name="priority" id="low" type="radio" value="low" />
+                <input name="edit-priority" id="low" type="radio" value="low" />
               </div>
 
               <div class="normal-prio">
                 <label id="normal-label" for="normal">NORMAL</label>
                 <input
-                  name="priority"
+                  name="edit-priority"
                   id="normal"
                   type="radio"
                   value="normal"
                   checked
                 />
               </div>
-              </div>
 
               <div class="high-prio">
                 <label id="high-label" for="high">HIGH</label>
-                <input name="priority" id="high" type="radio" value="high" />
+                <input name="edit-priority" id="high" type="radio" value="high" />
               </div>
             </div>
-            <div><button id="edit-task">EDIT</button></div>
+            </div>
+            <div id="edit-button-div"><button id="edit-task">EDIT</button></div>
           </div>
 
           <div class="task-details-container">
@@ -106,12 +106,12 @@
 
             <div class="desc-container">
               <div class="desc-label">Task Details</div>
-              <div class="details-desc">
+              <textarea class="details-desc">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Blanditiis magni qui quia. Ratione esse nam unde facilis aperiam
                 mollitia, veniam quos laboriosam, dolorem error exercitationem
                 ea nemo aliquam voluptatum suscipit?
-              </div>
+              </textarea>
             </div>
 
             <div class="date-container">
@@ -155,13 +155,13 @@
               <div class="prio-buttons">
                 <div class="low-prio">
                   <label id="low-label" for="low">LOW</label>
-                  <input name="edit-priority" id="low" type="radio" value="low" />
+                  <input name="priority" id="low" type="radio" value="low" />
                 </div>
 
                 <div class="normal-prio">
                   <label id="normal-label" for="normal">NORMAL</label>
                   <input
-                    name="edit-priority"
+                    name="priority"
                     id="normal"
                     type="radio"
                     value="normal"
@@ -171,7 +171,7 @@
 
                 <div class="high-prio">
                   <label id="high-label" for="high">HIGH</label>
-                  <input name="edit-priority" id="high" type="radio" value="high" />
+                  <input name="priority" id="high" type="radio" value="high" />
                 </div>
               </div>
             </div>
