@@ -11,8 +11,6 @@ import {
   cardDetails,
   editDetails,
   homePage,
-  updateDetails,
-  updateCard,
 } from "./modules/Manipulation";
 import { addProject, createProject, clearSelected } from "./modules/projects";
 import { projectSelected } from "./modules/Manipulation";
@@ -62,23 +60,10 @@ export function removeAndDetails(card, obj) {
     background.style.visibility = "visible";
   });
 
-  let detailsEdit = document.getElementById("edit-button");
-  detailsEdit.addEventListener("click", () => {
-    editDetails(obj);
-    taskEdit.style.visibility = "visible";
-    detailsContainer.style.visibility = "hidden";
-  });
-
   let detailsRemove = document.getElementById("detail-exit-button");
 
   detailsRemove.addEventListener("click", () => {
     detailsContainer.style.visibility = "hidden";
-    background.style.visibility = "hidden";
-  });
-
-  let editExit = document.getElementsByClassName("edit-exit-button")[0];
-  editExit.addEventListener("click", () => {
-    taskEdit.style.visibility = "hidden";
     background.style.visibility = "hidden";
   });
 
@@ -92,7 +77,8 @@ export function removeAndDetails(card, obj) {
       if (e.which == 13) {
         detailsName.innerHTML = nameInput.value;
         parent.replaceChild(detailsName, nameInput);
-        card;
+        card.querySelector(".task-name").innerHTML = nameInput.value;
+        taskArray[obj.num].name = nameInput.value;
       }
     });
   });
@@ -108,6 +94,8 @@ export function removeAndDetails(card, obj) {
       if (e.which == 13) {
         detailsDate.innerHTML = dateInput.value;
         parent.replaceChild(detailsDate, dateInput);
+        card.querySelector(".task-date").innerHTML = dateInput.value;
+        taskArray[obj.num].date = dateInput.value;
       }
     });
   });
@@ -136,7 +124,6 @@ createTask.addEventListener("click", () => {
     if (taskDate.value == undefined || taskDate.value == "") {
       taskDate.type = "input";
       taskDate.value = "No Date";
-      console.log(taskDate.value);
     }
 
     console.log(taskDate.value);
@@ -160,6 +147,7 @@ createTask.addEventListener("click", () => {
     taskName.value = "";
     taskDesc.value = "";
     taskDate.value = "";
+    taskDate.type = "date";
 
     let taskCard = createCard(taskObj);
 
@@ -167,15 +155,6 @@ createTask.addEventListener("click", () => {
     background.style.visibility = "hidden";
 
     removeAndDetails(taskCard, taskObj);
-
-    let confirmCreate = document.getElementById("edit-task");
-
-    confirmCreate.addEventListener("click", () => {
-      taskEdit.style.visibility = "hidden";
-      background.style.visibility = "hidden";
-      let newDetails = updateDetails(taskObj.num);
-      updateCard(taskCard, newDetails, taskObj.num);
-    });
   }
 });
 

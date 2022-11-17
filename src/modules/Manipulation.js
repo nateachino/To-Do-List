@@ -109,60 +109,6 @@ function editDetails(task) {
   editDate.value = detailsDate.innerHTML;
 }
 
-function updateDetails(num) {
-  const editName = document.getElementById("edit-name");
-  const editDesc = document.getElementById("edit-desc");
-  const editDate = document.getElementById("edit-date");
-  const editPrio = document.getElementsByName("edit-priority");
-  let current = "";
-  const number = num;
-
-  console.log(num);
-
-  let selectedPrio = "";
-
-  for (let i = 0; i < editPrio.length; i++) {
-    if (editPrio[i].checked) {
-      selectedPrio = editPrio[i].value;
-      editPrio[i].checked;
-    }
-  }
-
-  const detailsName = document.getElementsByClassName("details-header")[0];
-  const detailsDesc = document.getElementsByClassName("details-desc")[0];
-  const detailsDate = document.getElementsByClassName("details-date")[0];
-  const detailsPrio = document.getElementsByClassName("prio-card");
-
-  detailsName.innerHTML = editName.value;
-  detailsDate.innerHTML = editDate.value;
-  detailsDesc.innerHTML = editDesc.value;
-
-  return selectedPrio;
-}
-
-function updateCard(num) {
-  console.log(document.querySelector("[data-index=" + num + "]"));
-
-  // const getCardName = card.getElementsByClassName;
-  // const getCardDate = card.querySelector(".task-date");
-  // const getCardPrio = card.querySelector(".prio-card");
-
-  // const editName = document.getElementById("edit-name");
-  // const editDesc = document.getElementById("edit-desc");
-  // const editDate = document.getElementById("edit-date");
-  // const editPrio = document.getElementsByName("edit-priority");
-
-  // const objName = editName.value;
-  // const objDate = editDate.value;
-  // const objPrio = obj;
-
-  // console.log(obj);
-  // getCardName.innerHTML = objName;
-  // getCardDate.innerHTML = objDate;
-  // getCardPrio.className = "prio-card" + " " + objPrio;
-  // getCardPrio.innerHTML = objPrio.toUpperCase();
-}
-
 function projectSelected(projectName) {
   console.log(projectName + " selected");
   const content = document.getElementsByClassName("content")[0];
@@ -205,6 +151,4 @@ export {
   editDetails,
   projectSelected,
   homePage,
-  updateDetails,
-  updateCard,
 };
